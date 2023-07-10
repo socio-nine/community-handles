@@ -7,10 +7,6 @@ export const siteConfig = {
       href: "/",
     },
     {
-      title: "Members",
-      href: "/community",
-    },
-    {
       title: "Create your own community handle",
       href: "/create-your-own",
     },
