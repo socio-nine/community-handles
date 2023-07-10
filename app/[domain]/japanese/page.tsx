@@ -65,6 +65,7 @@ export default async function IndexPage({
         )
         if (validHandle) {
           try {
+            const handle = newHandle.replace(`.${domain}`, "")
             const newAgent = await getAgent()
             console.log("fetching profile", validHandle)
             const newActor = await newAgent.getProfile({
@@ -102,7 +103,7 @@ export default async function IndexPage({
       <div className="flex max-w-[980px] flex-col items-start gap-4">
         <h1 className="text-3xl font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl">
           Bluesky用の{domain} <br className="hidden sm:inline" />
-          ハンドルを取得する
+          ハンドル取得ツール
         </h1>
         <p className="max-w-[700px] text-lg text-muted-foreground sm:text-xl">
           {domain} ハンドルに変更するには、以下に従って操作してください。
@@ -126,7 +127,7 @@ export default async function IndexPage({
                 <Button type="submit">Submit</Button>
               </div>
               <p className="text-sm text-muted-foreground">
-                現在のハンドルを、入力してください（@は除く）。 </p>
+                現在のハンドルを入力してください（@は除く）。 </p>
               {error1 && (
                 <p className="flex flex-row items-center gap-2 text-sm text-red-500">
                   <X className="h-4 w-4" /> ユーザーが見つかりませんでした。
@@ -157,7 +158,7 @@ export default async function IndexPage({
                 <Button type="submit">Submit</Button>
               </div>
               <p className="text-sm text-muted-foreground ">
-                変更希望の {domain} ハンドルを入力してください（@は除く） </p>
+                取得希望の {domain} ハンドルを入力してください（@は除く）。 </p>
               {error2 && (
                 <p className="text-sm text-red-500">
                   {(() => {
