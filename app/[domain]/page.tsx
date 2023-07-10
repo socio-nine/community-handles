@@ -128,17 +128,17 @@ export default async function IndexPage({
                 <Button type="submit">Submit</Button>
               </div>
               <p className="text-sm text-muted-foreground">
-                Enter your current handle, not including the @
+                @를 제외한 현재의 핸들을 입력해주세요. Enter your current handle, not including the @
               </p>
               {error1 && (
                 <p className="flex flex-row items-center gap-2 text-sm text-red-500">
-                  <X className="h-4 w-4" /> Handle not found - please try again
+                  <X className="h-4 w-4" /> 사용자를 찾지 못했습니다. 오타가 없는지 확인해주세요. Handle not found - please try again
                 </p>
               )}
               {profile && (
                 <>
                   <p className="text-muted-forground mt-4 flex flex-row items-center gap-2 text-sm">
-                    <Check className="h-4 w-4 text-green-500" /> Account found
+                    <Check className="h-4 w-4 text-green-500" /> 사용자를 찾았습니다. Account found
                   </p>
                   <Profile profile={profile} className="mt-4" />
                 </>
@@ -160,7 +160,7 @@ export default async function IndexPage({
                 <Button type="submit">Submit</Button>
               </div>
               <p className="text-sm text-muted-foreground ">
-                Enter the {domain} handle that you would like to have, not
+                사용하실 핸들을, @을 제외하고 입력해주세요. Enter the {domain} handle that you would like to have, not
                 including the @
               </p>
               {error2 && (
@@ -170,6 +170,7 @@ export default async function IndexPage({
                       case "handle taken":
                         return "Handle already taken - please enter a different handle"
                       case "invalid handle":
+
                         return "Invalid handle - please enter a different handle"
                       default:
                         return "An error occured - please try again"
@@ -187,6 +188,11 @@ export default async function IndexPage({
           last
         >
           <p className="max-w-lg text-sm">
+            블루스카이 앱의 Settings {">"} Advanced {">"} Change my handle 을 클릭합니다. &quot;I
+            have my own domain&quot; 을 클릭한 후 {" "}
+            {newHandle ? `"${newHandle}"` : “새 핸들”} 을 입력합니다. 마지막으로,
+            &quot;Verify DNS Record&quot; 를 선택합니다.  
+            
             Go to Settings {">"} Advanced {">"} Change my handle. Select &quot;I
             have my own domain&quot; and enter{" "}
             {newHandle ? `"${newHandle}"` : "your new handle"}. Finally, tap
@@ -195,8 +201,9 @@ export default async function IndexPage({
           <p className="mt-6 max-w-lg text-sm">
             If you like this project, consider{" "}
             <a href="https://github.com/sponsors/mozzius" className="underline">
-              sponsoring my work
+              sponsoring Mozzius's work
             </a>
+
             .
           </p>
         </Stage>
