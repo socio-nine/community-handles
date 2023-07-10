@@ -68,7 +68,7 @@ export default async function IndexPage({
             const newAgent = await getAgent()
             console.log("fetching profile", validHandle)
             const newActor = await newAgent.getProfile({
-              actor: validHandle,
+              actor: newHandle,
             })
             if (!newActor.success) {
               await prisma.user.create({
