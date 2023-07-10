@@ -198,11 +198,10 @@ export default async function IndexPage({
             &quot;Verify DNS Record&quot;.
           </p>
           <p className="mt-6 max-w-lg text-sm">
-            If you like this project, consider{" "}
+            이 도구는 {" "}
             <a href="https://github.com/sponsors/mozzius" className="underline">
-              sponsoring Mozzius' work
-            </a>
-            .
+              Mozzius
+            </a> 에 의해 제작되었으며, 본 도메인은 나인나인 n1nenine 이 관리합니다.
           </p>
         </Stage>
       </div>
