@@ -65,28 +65,29 @@ export default async function IndexPage({
         )
         if (validHandle) {
           try {
-              await prisma.user.create({
-                data: {
-                  handle,
-                  did: profile.did,
-                  domain: {
-                    connectOrCreate: {
-                      where: { name: domain },
-                      create: { name: domain },
-                    },
-                  },
+            const handle = newHandle.replace(`.${domain}`, "")
+            await prisma.user.create({
+            data: {
+              handle,
+              did: profile.did,
+              domain: {
+                connectOrCreate: {
+                  where: { name: domain },
+                  create: { name: domain },
                 },
-              })
-            } catch (e) {
-            console.error(e)
-            error2 = (e as Error)?.message ?? "unknown error"
-          }
-        } else {
-          error2 = "invalid handle"
+              },
+            },
+          })
+        } catch (e) {
+        console.error(e)
+        error2 = (e as Error)?.message ?? "unknown error"
         }
+      } else {
+        error2 = "invalid handle"
       }
     }
   }
+}
 
   return (
     <main className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
