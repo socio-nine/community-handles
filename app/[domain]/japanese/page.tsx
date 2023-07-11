@@ -67,14 +67,14 @@ export default async function IndexPage({
           try {
             const handle = newHandle.replace(`.${domain}`, "")
             const newAgent = await getAgent()
-            console.log("fetching profile", validHandle)
+            console.log("fetching profile", handle)
             const newActor = await newAgent.getProfile({
-              actor: newHandle,
+              actor: handle,
             })
             if (!newActor.success) {
               await prisma.user.create({
                 data: {
-                  newHandle,
+                  handle,
                   did: profile.did,
                   domain: {
                     connectOrCreate: {
