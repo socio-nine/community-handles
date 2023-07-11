@@ -65,13 +65,6 @@ export default async function IndexPage({
         )
         if (validHandle) {
           try {
-            const handle = newHandle.replace(`.${domain}`, "")
-            const newAgent = await getAgent()
-            console.log("fetching profile", handle)
-            const newActor = await newAgent.getProfile({
-              actor: handle,
-            })
-            if (!newActor.success) {
               await prisma.user.create({
                 data: {
                   handle,
@@ -84,10 +77,7 @@ export default async function IndexPage({
                   },
                 },
               })
-            } else { 
-                error2 = "handle taken"
-            } 
-          } catch (e) {
+            } catch (e) {
             console.error(e)
             error2 = (e as Error)?.message ?? "unknown error"
           }
