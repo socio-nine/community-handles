@@ -71,7 +71,8 @@ export default async function IndexPage({
               include: { domain: true },
             })
             if (existing && existing.domain.name === domain) {
-              await prisma.user.create({
+              if (existing.did !== profile.did) {
+                await prisma.user.create({
                 data: {
                   handle,
                   did: profile.did,
@@ -83,7 +84,8 @@ export default async function IndexPage({
                   },
                 },
               })
-            } else {
+            } 
+          } else {
               await prisma.user.create({
                 data: {
                   handle,
