@@ -128,19 +128,17 @@ export default async function IndexPage({
                 <Button type="submit">Submit</Button>
               </div>
               <p className="text-sm text-muted-foreground">
-                현재의 핸들을, @를 제외하고 입력해주세요. </p>
-              <p className="text-sm text-muted-foreground">
                 Enter your current handle, not including the @
               </p>
               {error1 && (
                 <p className="flex flex-row items-center gap-2 text-sm text-red-500">
-                  <X className="h-4 w-4" /> 사용자를 찾지 못했습니다. Handle not found.
+                  <X className="h-4 w-4" /> Handle not found.
                 </p>
               )}
               {profile && (
                 <>
                   <p className="text-muted-forground mt-4 flex flex-row items-center gap-2 text-sm">
-                    <Check className="h-4 w-4 text-green-500" /> 사용자를 찾았습니다. Account found.
+                    <Check className="h-4 w-4 text-green-500" /> Account found.
                   </p>
                   <Profile profile={profile} className="mt-4" />
                 </>
@@ -161,8 +159,6 @@ export default async function IndexPage({
                 />
                 <Button type="submit">Submit</Button>
               </div>
-              <p className="text-sm text-muted-foreground ">
-                원하시는 {domain} 핸들을, @를 제외하고 입력해주세요. </p>
               <p className="text-sm text-muted-foreground ">
                 Enter the {domain} handle that you would like to have, not
                 including the @
@@ -191,21 +187,16 @@ export default async function IndexPage({
           last
         >
           <p className="max-w-lg text-sm">
-            블루스카이 앱에서 Settings {">"} Advanced {">"} Change my handle 을 클릭합니다. &quot;I
-            have my own domain&quot;를 선택하고 {" "}
-            {newHandle ? `"${newHandle}"` : "새로운 핸들"}을 입력합니다. 마지막으로,
-             &quot;Verify DNS Record&quot;를 클릭한 후 핸들을 업데이트합니다. </p>
-          <p className="max-w-lg text-sm">
             Go to Settings {">"} Advanced {">"} Change my handle. Select &quot;I
             have my own domain&quot; and enter{" "}
             {newHandle ? `"${newHandle}"` : "your new handle"}. Finally, tap
             &quot;Verify DNS Record&quot;.
           </p>
           <p className="mt-6 max-w-lg text-sm">
-            이 도구는 {" "}
+            This tool is made by {" "}
             <a href="https://github.com/sponsors/mozzius" className="underline">
               Mozzius
-            </a>에 의해 제작되었으며, 본 도메인 {domain} 은 나인나인 N1nenine 이 관리합니다.
+            </a>. This domain {domain} is managed by N1nenine.
           </p>
         </Stage>
       </div>

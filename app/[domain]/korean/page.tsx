@@ -103,11 +103,11 @@ export default async function IndexPage({
     <main className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
       <div className="flex max-w-[980px] flex-col items-start gap-4">
         <h1 className="text-3xl font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl">
-          Get your own {domain} <br className="hidden sm:inline" />
-          handle for Bluesky
+          블루스카이용 {domain} <br className="hidden sm:inline" />
+          핸들 변경 도구
         </h1>
         <p className="max-w-[700px] text-lg text-muted-foreground sm:text-xl">
-          Follow the instructions below to get your own {domain} handle
+          다음 절차를 따라 {domain} 핸들로 변경해주세요.
         </p>
       </div>
       <div>
@@ -129,18 +129,15 @@ export default async function IndexPage({
               </div>
               <p className="text-sm text-muted-foreground">
                 현재의 핸들을, @를 제외하고 입력해주세요. </p>
-              <p className="text-sm text-muted-foreground">
-                Enter your current handle, not including the @
-              </p>
               {error1 && (
                 <p className="flex flex-row items-center gap-2 text-sm text-red-500">
-                  <X className="h-4 w-4" /> 사용자를 찾지 못했습니다. Handle not found.
+                  <X className="h-4 w-4" /> 사용자를 찾지 못했습니다. 
                 </p>
               )}
               {profile && (
                 <>
                   <p className="text-muted-forground mt-4 flex flex-row items-center gap-2 text-sm">
-                    <Check className="h-4 w-4 text-green-500" /> 사용자를 찾았습니다. Account found.
+                    <Check className="h-4 w-4 text-green-500" /> 사용자를 찾았습니다. 
                   </p>
                   <Profile profile={profile} className="mt-4" />
                 </>
@@ -163,20 +160,16 @@ export default async function IndexPage({
               </div>
               <p className="text-sm text-muted-foreground ">
                 원하시는 {domain} 핸들을, @를 제외하고 입력해주세요. </p>
-              <p className="text-sm text-muted-foreground ">
-                Enter the {domain} handle that you would like to have, not
-                including the @
-              </p>
               {error2 && (
                 <p className="text-sm text-red-500">
                   {(() => {
                     switch (error2) {
                       case "handle taken":
-                        return "Handle already taken - please enter a different handle"
+                        return "이미 데이터베이스에 등록된 핸들입니다. 실제로는 사용되고 있지 않은 핸들일 경우 관리자 (나인나인) 에게 연락해주세요."
                       case "invalid handle":
-                        return "Invalid handle - please enter a different handle"
+                        return "유효하지 않은 핸들입니다."
                       default:
-                        return "An error occured - please try again"
+                        return "알 수 없는 문제가 발생했습니다. 다시 시도해주세요."
                     }
                   })()}
                 </p>
@@ -195,12 +188,6 @@ export default async function IndexPage({
             have my own domain&quot;를 선택하고 {" "}
             {newHandle ? `"${newHandle}"` : "새로운 핸들"}을 입력합니다. 마지막으로,
              &quot;Verify DNS Record&quot;를 클릭한 후 핸들을 업데이트합니다. </p>
-          <p className="max-w-lg text-sm">
-            Go to Settings {">"} Advanced {">"} Change my handle. Select &quot;I
-            have my own domain&quot; and enter{" "}
-            {newHandle ? `"${newHandle}"` : "your new handle"}. Finally, tap
-            &quot;Verify DNS Record&quot;.
-          </p>
           <p className="mt-6 max-w-lg text-sm">
             이 도구는 {" "}
             <a href="https://github.com/sponsors/mozzius" className="underline">

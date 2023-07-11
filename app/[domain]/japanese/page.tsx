@@ -72,20 +72,9 @@ export default async function IndexPage({
             })
             if (existing && existing.domain.name === domain) {
               if (existing.did !== profile.did) {
-                await prisma.user.create({
-                data: {
-                  handle,
-                  did: profile.did,
-                  domain: {
-                    connectOrCreate: {
-                      where: { name: domain },
-                      create: { name: domain },
-                    },
-                  },
-                },
-              })
-            } 
-          } else {
+                error2 = "handle taken"
+              }
+            } else {
               await prisma.user.create({
                 data: {
                   handle,
@@ -118,7 +107,7 @@ export default async function IndexPage({
           ハンドル取得ツール
         </h1>
         <p className="max-w-[700px] text-lg text-muted-foreground sm:text-xl">
-          {domain} ハンドルに変更するには、以下に従って操作してください。
+          {domain} ハンドルに変更するには、以下の手順に沿って操作操作してください。
         </p>
       </div>
       <div>
@@ -170,13 +159,13 @@ export default async function IndexPage({
                 <Button type="submit">Submit</Button>
               </div>
               <p className="text-sm text-muted-foreground ">
-                取得希望の {domain} ハンドルを入力してください（@は除く）。 </p>
+                変更したい {domain} ハンドルを入力します（@は除く）。 </p>
               {error2 && (
                 <p className="text-sm text-red-500">
                   {(() => {
                     switch (error2) {
                       case "handle taken":
-                        return "すでに使われているハンドルです。"
+                        return "すでに登録されているハンドルです。実際には使われていない場合、管理者（N1nenine）に連絡してください。"
                       case "invalid handle":
                         return "ハンドルが無効です。"
                       default:
