@@ -1,9 +1,9 @@
 import { AppBskyActorDefs } from "@atproto/api"
-import { kv } from "@vercel/kv"
 import { Check, X } from "lucide-react"
 
-import { getAgent } from "@/lib/atproto"
+import { agent } from "@/lib/atproto"
 import { prisma } from "@/lib/db"
+import { hasExplicitSlur } from "@/lib/slurs"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Profile } from "@/components/profile"
@@ -38,7 +38,6 @@ export default async function IndexPage({
 
   if (handle) {
     try {
-      const agent = await getAgent()
       if (!handle.includes(".")) {
         handle += ".bsky.social"
       }
@@ -66,6 +65,9 @@ export default async function IndexPage({
         if (validHandle) {
           try {
             const handle = newHandle.replace(`.${domain}`, "")
+            if (hasExplicitSlur(handle)) {
+              throw new Error("slur")
+            }
             const existing = await prisma.user.findFirst({
               where: { handle },
               include: { domain: true },
@@ -170,6 +172,7 @@ export default async function IndexPage({
                       case "handle taken":
                         return "Handle already taken - please enter a different handle"
                       case "invalid handle":
+                      case "slur":
                         return "Invalid handle - please enter a different handle"
                       default:
                         return "An error occured - please try again"
